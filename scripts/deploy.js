@@ -14,19 +14,26 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const TestTokenFactory = await hre.ethers.getContractFactory('TestToken')
-  const testToken = await TestTokenFactory.deploy();
+  const Custom = await hre.ethers.getContractFactory('Custom');
+  const custom = await Custom.deploy('NFT', 'NFT');
 
-  await testToken.deployed();
+  await custom.deployed();
 
-  console.log('Test token Address:', testToken.address);
+  console.log('NFT Contract Address:', custom.address);
 
-  const RewardDistributorFactory = await hre.ethers.getContractFactory('RewardDistributor');
-  const rewardDistributor = await RewardDistributorFactory.deploy();
+  const Addresses = await hre.ethers.getContractFactory('Addresses');
+  const addresses = await Addresses.deploy();
 
-  await rewardDistributor.deployed();
+  await addresses.deployed();
 
-  console.log('RewardDistributor Contract Address:', rewardDistributor.address);
+  console.log('Address Management Contract Address:', addresses.address);
+
+  const Marketplace = await hre.ethers.getContractFactory('ClockSale');
+  const marketplace = await Marketplace.deploy();
+
+  await marketplace.deployed();
+
+  console.log('Marketplace Contract Address:', marketplace.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
